@@ -12,18 +12,53 @@
 encoding="UTF-8" indent="yes"/>
 
 <xsl:template match="/result:result">
-<p>iSite2fileId = <strong><xsl:value-of select="result:metadata/result:fileId" /></strong>.</p>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="http://static.bbci.co.uk/modules/share/1.5.1/style/share.css"/>
+    <link rel="stylesheet" href="http://static.bbci.co.uk/gelstyles/0.10.0/style/core.css"/>
+    <link href="http://stuartmemo.github.io/bbc-cards/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <style>
+    .c-Card {width: 360px; }	
+    </style>
+    <title>Flashcard</title>
+  </head>
+<body class="cards cards_index">
+<h1><xsl:value-of select="result:metadata/result:fileId" /></h1>
 <xsl:apply-templates select="result:document/card:card" />
+<script src="http://stuartmemo.github.io/bbc-cards/javascripts/application.js" type="text/javascript"><xsl:comment>null</xsl:comment></script>
+</body>
+</html>
 </xsl:template>
 
 
 <xsl:template match="card:card">
-	<p>found a card with id <strong><xsl:value-of select="card:basic-information/card:id" /></strong>
-	and type <strong><xsl:value-of select="card:basic-information/card:type" /></strong>.</p>
+	<p>A <strong><xsl:value-of 
+	select="card:basic-information/card:type" /></strong> card.</p>
 
-	<xsl:if test="card:basic-information/card:type/text() ">
+
+	  <div class="c-Article c-Card">
+    <div class="c-Article-body c-Card-body">
+      <div class="">
+        <div class="c-Text gel-long-primer">
+           
+            		<xsl:if test="card:basic-information/card:type/text() ">
 		<xsl:apply-templates select="card:glossary-term/card:glossary/result:result/result:document/term:glossary-term" />
 	</xsl:if>
+ 
+        </div>
+        <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (Preview)</p>
+      </div>
+    </div>
+    <div class="c-Toolbar gel-brevier u-cf">
+      <ul class="c-Toolbar-actionGroup">
+        <li class="c-Toolbar-action">
+          <span class="c-Share c-Share--shortText js-share"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </xsl:template>
 
 
