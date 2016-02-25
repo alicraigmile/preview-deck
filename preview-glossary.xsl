@@ -22,10 +22,10 @@ encoding="UTF-8" indent="yes"/>
     <style>
     .c-Card {width: 360px; }	
     </style>
-    <title>Flashcard</title>
+    <title>Card <xsl:value-of select="result:metadata/result:fileId" /> (preview)</title>
   </head>
 <body class="cards cards_index">
-<h1><xsl:value-of select="result:metadata/result:fileId" /></h1>
+<h1>Card <xsl:value-of select="result:metadata/result:fileId" /> (preview)</h1>
 <xsl:apply-templates select="result:document/card:card" />
 <script src="http://stuartmemo.github.io/bbc-cards/javascripts/application.js" type="text/javascript"><xsl:comment>null</xsl:comment></script>
 </body>
@@ -48,7 +48,7 @@ encoding="UTF-8" indent="yes"/>
 	</xsl:if>
  
         </div>
-        <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (Preview)</p>
+        <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
     </div>
     <div class="c-Toolbar gel-brevier u-cf">
