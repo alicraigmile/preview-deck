@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result xmlns="https://production.bbc.co.uk/isite2/contentreader/xml/result"><metadata><modifiedDateTime>2016-02-25T23:02:20.631343Z</modifiedDateTime><creationDateTime>2016-02-25T23:02:20.631343Z</creationDateTime><type>card</type><fileId>zxdsdmn</fileId><guid>e9e24b82-f294-4e41-ae48-348f0b513446</guid></metadata><document><card xmlns="https://production.bbc.co.uk/isite2/project/education/card">
+                    <basic-information>
+                        <id>zxdsdmn</id>
+                        <isite-title>systolic pressure</isite-title>
+                        <type>glossary</type>
+                        <headline/>
+                        <body-text/>
+                    </basic-information>
+                    <audio>
+                        <audio-pid/>
+                        <audio-text/>
+                    </audio>
+                    <quiz>
+                        <qid/>
+                        <quiz-image/>
+                    </quiz>
+                    <glossary-term>
+                        <glossary><result xmlns="https://production.bbc.co.uk/isite2/contentreader/xml/result"><metadata><modifiedDateTime>2016-02-25T23:02:20.631343Z</modifiedDateTime><creationDateTime>2016-02-25T23:02:20.631343Z</creationDateTime><type>sg-glossary-term</type><fileId>zp737hv</fileId><guid>2ae06a56-90d5-4f00-ae2b-4e374b11c24c</guid></metadata><document><glossary-term xmlns="https://production.bbc.co.uk/isite2/project/education/sg-glossary-term">
+                    <id label="zp737hv">zp737hv</id>
+                    <term>systolic pressure</term>
+                    <description>The pressure in arteries when the heart contracts</description>
+                    <language>English</language>
+                </glossary-term></document></result></glossary>
+                        <glossary-front-image/>
+                        <glossary-back-image/>
+                    </glossary-term>
+                    <infographic>
+                        <infographic-front-image/>
+                        <infographic-front-headline/>
+                        <infographic-back-image/>
+                        <infographic-back-headline/>
+                    </infographic>
+                    <quote>
+                        <quote-text/>
+                        <quote-author/>
+                        <quote-author-information/>
+                    </quote>
+                    <video>
+                        <video-pid/>
+                        <video-text/>
+                    </video>
+                </card></document></result>
