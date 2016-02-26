@@ -62,6 +62,10 @@ encoding="UTF-8" indent="yes"/>
               <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
               <xsl:apply-templates select="card:video" />
           </xsl:if>
+          <xsl:if test="card:basic-information/card:type = 'audio'">
+              <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
+              <xsl:apply-templates select="card:audio" />
+          </xsl:if>
         </div>
         <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
@@ -118,8 +122,13 @@ encoding="UTF-8" indent="yes"/>
 </xsl:template>
 
 <xsl:template match="card:video">
-   <p>The video <strong><xsl:value-of select="card:video-pid" /></strong> is shown on this card.</p>
-   <p><a href="http://www.bbc.co.uk/programmes/{card:video-pid}">Play in /programmes</a></p>
+   <p>The video clip <strong><xsl:value-of select="card:video-pid" /></strong> can be watched on this card.</p>
+   <p><a href="http://www.bbc.co.uk/programmes/{card:video-pid}">See in /programmes</a></p>
+</xsl:template>
+
+<xsl:template match="card:audio">
+   <p>The audio clip <strong><xsl:value-of select="card:audio-pid" /></strong> can be heard on this card.</p>
+   <p><a href="http://www.bbc.co.uk/programmes/{card:audio-pid}">See in /programmes</a></p>
 </xsl:template>
 
 <!-- https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=zxdsdmn&project=education&allowNonLive=true&depth=1 -->
