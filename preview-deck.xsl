@@ -66,6 +66,11 @@ encoding="UTF-8" indent="yes"/>
               <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
               <xsl:apply-templates select="card:audio" />
           </xsl:if>
+          <xsl:if test="card:basic-information/card:type = 'quiz'">
+            <p>Test yourself:</p>
+              <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
+              <xsl:apply-templates select="card:quiz" />
+          </xsl:if>
         </div>
         <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
@@ -132,6 +137,13 @@ encoding="UTF-8" indent="yes"/>
    <p><a href="http://www.bbc.co.uk/programmes/{card:audio-pid}">See in /programmes</a></p>
    <p><xsl:value-of select="card:audio-text" /></p>
 </xsl:template>
+
+<xsl:template match="card:quiz">
+   <p>The quiz <strong><xsl:value-of select="card:qid" /></strong> appears on this card.</p>
+   <p><a href="https://production.bbc.co.uk/games/acme/cms/quiz/knowlearn/{card:qid}/editor">Open in ACME Editor</a></p>
+   <p><xsl:value-of select="card:audio-text" /></p>
+</xsl:template>
+
 
 <!-- https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=zxdsdmn&project=education&allowNonLive=true&depth=1 -->
 
