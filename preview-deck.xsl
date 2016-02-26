@@ -58,6 +58,10 @@ encoding="UTF-8" indent="yes"/>
               <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
               <xsl:apply-templates select="card:basic-information/card:body-text" />
           </xsl:if>
+          <xsl:if test="card:basic-information/card:type = 'video'">
+              <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
+              <xsl:apply-templates select="card:video" />
+          </xsl:if>
         </div>
         <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
@@ -111,6 +115,11 @@ encoding="UTF-8" indent="yes"/>
 
 <xsl:template match="cardtext:strong">
   <strong><xsl:apply-templates /></strong>
+</xsl:template>
+
+<xsl:template match="card:video">
+   <p>The video <strong><xsl:value-of select="card:video-pid" /></strong> is shown on this card.</p>
+   <p><a href="http://www.bbc.co.uk/programmes/{card:video-pid}">Play in /programmes</a></p>
 </xsl:template>
 
 <!-- https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=zxdsdmn&project=education&allowNonLive=true&depth=1 -->
