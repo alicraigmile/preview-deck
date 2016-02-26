@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #Thx to https://confluence.dev.bbc.co.uk/display/~conor.keegan/Curl+on+OSX+10.9
+#http://stackoverflow.com/questions/3349105/how-to-set-current-working-directory-to-the-directory-of-the-script
+
+cd "$(dirname "$0")"
 
 zid="$1"
 curl="/usr/local/Cellar/curl/7.46.0/bin/curl --cert /Users/craiga01/workspace/dev.bbc.co.uk.pem --cacert ./ca-bundle.pem"

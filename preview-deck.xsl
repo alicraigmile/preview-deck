@@ -31,7 +31,8 @@ encoding="UTF-8" indent="yes"/>
   <h1>Deck <xsl:value-of select="result:metadata/result:fileId" /> (preview)</h1>
 
 <xsl:apply-templates select="result:document/deck:deck//card:card" />
-<script src="http://stuartmemo.github.io/bbc-cards/javascripts/application.js" type="text/javascript"><xsl:comment>null</xsl:comment></script>
+<script src="http://stuartmemo.github.io/bbc-cards/javascripts/application.js" type="text/javascript"><xsl:comment>application</xsl:comment></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'><xsl:comment>mathjax</xsl:comment></script>
 </body>
 </html>
 </xsl:template>
@@ -128,6 +129,10 @@ encoding="UTF-8" indent="yes"/>
 
 <xsl:template match="cardtext:strong">
   <strong><xsl:apply-templates /></strong>
+</xsl:template>
+
+<xsl:template match="cardtext:equation">
+  <li>$$ <xsl:apply-templates select="cardtext:tex" /> $$</li>
 </xsl:template>
 
 <xsl:template match="card:video">
