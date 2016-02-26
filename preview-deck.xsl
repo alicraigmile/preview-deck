@@ -124,11 +124,13 @@ encoding="UTF-8" indent="yes"/>
 <xsl:template match="card:video">
    <p>The video clip <strong><xsl:value-of select="card:video-pid" /></strong> can be watched on this card.</p>
    <p><a href="http://www.bbc.co.uk/programmes/{card:video-pid}">See in /programmes</a></p>
+   <p><xsl:value-of select="card:video-text" /></p>
 </xsl:template>
 
 <xsl:template match="card:audio">
    <p>The audio clip <strong><xsl:value-of select="card:audio-pid" /></strong> can be heard on this card.</p>
    <p><a href="http://www.bbc.co.uk/programmes/{card:audio-pid}">See in /programmes</a></p>
+   <p><xsl:value-of select="card:audio-text" /></p>
 </xsl:template>
 
 <!-- https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=zxdsdmn&project=education&allowNonLive=true&depth=1 -->
