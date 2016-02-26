@@ -7,3 +7,7 @@ Try:
 ./go-deck.sh zpvscwx
 ./go-deck.sh zgyng82
 ```
+
+on MacOS
+
+./osascript preview-deck.scpt
