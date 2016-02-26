@@ -127,21 +127,20 @@ encoding="UTF-8" indent="yes"/>
 </xsl:template>
 
 <xsl:template match="card:video">
+   <p><xsl:value-of select="card:video-text" /></p>
    <p>The video clip <strong><xsl:value-of select="card:video-pid" /></strong> can be watched on this card.</p>
    <p><a href="http://www.bbc.co.uk/programmes/{card:video-pid}">See in /programmes</a></p>
-   <p><xsl:value-of select="card:video-text" /></p>
 </xsl:template>
 
 <xsl:template match="card:audio">
+   <p><xsl:value-of select="card:audio-text" /></p>
    <p>The audio clip <strong><xsl:value-of select="card:audio-pid" /></strong> can be heard on this card.</p>
    <p><a href="http://www.bbc.co.uk/programmes/{card:audio-pid}">See in /programmes</a></p>
-   <p><xsl:value-of select="card:audio-text" /></p>
 </xsl:template>
 
 <xsl:template match="card:quiz">
    <p>The quiz <strong><xsl:value-of select="card:qid" /></strong> appears on this card.</p>
    <p><a href="https://production.bbc.co.uk/games/acme/cms/quiz/knowlearn/{card:qid}/editor">Open in ACME Editor</a></p>
-   <p><xsl:value-of select="card:audio-text" /></p>
 </xsl:template>
 
 
