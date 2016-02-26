@@ -5,8 +5,8 @@
   xmlns:deck="https://production.bbc.co.uk/isite2/project/education/deck"
 	xmlns:card="https://production.bbc.co.uk/isite2/project/education/card"
 	xmlns:term="https://production.bbc.co.uk/isite2/project/education/sg-glossary-term"
-	xmlns:html="https://production.bbc.co.uk/isite2/project/education/sg-glossary-term"
-	exclude-result-prefixes="xsl result deck card term"
+	xmlns:cardtext="https://production.bbc.co.uk/isite2/project/education/card-formatted-text"
+	exclude-result-prefixes="xsl result cardtext deck card term"
 	version="1.0">
 
 <xsl:output method="html" version="4.0"
@@ -54,6 +54,10 @@ encoding="UTF-8" indent="yes"/>
           <xsl:if test="card:basic-information/card:type = 'infographic'">
               <xsl:apply-templates select="card:infographic" />
           </xsl:if>
+          <xsl:if test="card:basic-information/card:type = 'summary'">
+              <h2 class="c-Card-headline c-Headline gel-double-pica"><xsl:value-of select="card:basic-information/card:headline"/></h2>
+              <xsl:apply-templates select="card:basic-information/card:body-text" />
+          </xsl:if>
         </div>
         <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
@@ -72,7 +76,7 @@ encoding="UTF-8" indent="yes"/>
 
 <xsl:template match="card:infographic">
   <h3><xsl:value-of select="card:infographic-front-headline" /></h3>
-  <p>The image <strong><xsl:if test="not(card:infographic-front-image/text = '')">null</xsl:if><xsl:value-of select="card:infographic-front-image" /></strong> is shown on the front.</p>
+  <p>The image <strong><xsl:if test="not(card:infographic-front-image/text = '' )">null</xsl:if><xsl:value-of select="card:infographic-front-image" /></strong> is shown on the front.</p>
   <img src="http://a.files.bbci.co.uk/bam/live/content/{card:infographic-front-image}/small"></img>
 
    <h3><xsl:value-of select="card:infographic-back-headline" /></h3>
@@ -87,6 +91,27 @@ encoding="UTF-8" indent="yes"/>
 </xsl:for-each>
 </xsl:template>
 
+<xsl:template match="card:body-text">
+  <ul class="summary-list">
+   <xsl:apply-templates select="result:result/result:document/cardtext:card-formatted-text/cardtext:text" />
+  </ul>
+</xsl:template>
+
+<xsl:template match="cardtext:p">
+  <li><xsl:apply-templates /></li>
+</xsl:template>
+
+<xsl:template match="cardtext:sub">
+  <sub><xsl:apply-templates /></sub>
+</xsl:template>
+
+<xsl:template match="cardtext:sup">
+  <sup><xsl:apply-templates /></sup>
+</xsl:template>
+
+<xsl:template match="cardtext:strong">
+  <strong><xsl:apply-templates /></strong>
+</xsl:template>
 
 <!-- https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=zxdsdmn&project=education&allowNonLive=true&depth=1 -->
 
