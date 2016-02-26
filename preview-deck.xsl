@@ -48,10 +48,12 @@ encoding="UTF-8" indent="yes"/>
       <div class="">
         <div class="c-Text gel-long-primer">
            
-            		<xsl:if test="card:basic-information/card:type/text() ">
-		<xsl:apply-templates select="card:glossary-term/card:glossary/result:result/result:document" />
-	</xsl:if>
- 
+           <xsl:if test="card:basic-information/card:type = 'glossary'">
+		          <xsl:apply-templates select="card:glossary-term/card:glossary" />
+          </xsl:if>
+          <xsl:if test="card:basic-information/card:type = 'infographic'">
+              <xsl:apply-templates select="card:infographic" />
+          </xsl:if>
         </div>
         <p class="c-Card-brand c-Brand c-Brand--bitesize gel-minion">BBC Bitesize (preview)</p>
       </div>
@@ -67,8 +69,22 @@ encoding="UTF-8" indent="yes"/>
 </xsl:template>
 
 
-<xsl:template match="result:document/term:glossary-term">
-	<p>The meaning of <strong class="term"><xsl:value-of select="term:term" /></strong> is <strong><xsl:value-of select="term:description" /></strong>.</p>
+
+<xsl:template match="card:infographic">
+  <h3><xsl:value-of select="card:infographic-front-headline" /></h3>
+  <p>The image <strong><xsl:if test="not(card:infographic-front-image/text = '')">null</xsl:if><xsl:value-of select="card:infographic-front-image" /></strong> is shown on the front.</p>
+  <img src="http://a.files.bbci.co.uk/bam/live/content/{card:infographic-front-image}/small"></img>
+
+   <h3><xsl:value-of select="card:infographic-back-headline" /></h3>
+  <p>The image <strong><xsl:if test="not(card:infographic-back-image/text = '')">null</xsl:if><xsl:value-of select="card:infographic-back-image" /></strong> is shown on the back.</p>
+  <img src="http://a.files.bbci.co.uk/bam/live/content/{card:infographic-back-image}/small"></img>
+
+</xsl:template>
+
+<xsl:template match="card:glossary">
+  <xsl:for-each select="result:result/result:document/term:glossary-term">
+  <p>The meaning of <strong class="term"><xsl:value-of select="term:term" /></strong> is <strong><xsl:value-of select="term:description" /></strong>.</p>
+</xsl:for-each>
 </xsl:template>
 
 
