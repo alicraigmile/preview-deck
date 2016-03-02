@@ -18,6 +18,7 @@ encoding="UTF-8" indent="yes"/>
   <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
+		<link rel="alternate" type="application/vnd.bbc.maf+json" title="MAF JSON" href="https://einstein.api.bbci.co.uk/decks/{result:metadata/result:fileId/text()}" />
     <link rel="stylesheet" href="http://static.bbci.co.uk/modules/share/1.5.1/style/share.css"/>
     <link rel="stylesheet" href="http://static.bbci.co.uk/gelstyles/0.10.0/style/core.css"/>
     <link href="http://stuartmemo.github.io/bbc-cards/stylesheets/application.css" rel="stylesheet" type="text/css" />
