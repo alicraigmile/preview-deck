@@ -8,6 +8,8 @@ npm install
 
 To start:
 ```
+export PREVIEW_CERT=/path/to/your/certificate.pem
+export PREVIEW_PORT=8000 (optional, default=8888)
 npm start
 ```
 

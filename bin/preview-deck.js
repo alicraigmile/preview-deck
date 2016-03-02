@@ -10,12 +10,8 @@ var https = require("https");
 var pathToThisScript = path.dirname(__dirname);
 process.chdir(pathToThisScript);
 
-var deckId = 'zgyng82';
-var stylesheetPath = 'preview-deck.xsl';
-
-var lixslt = require('libxslt');
-var libxmljs = libxslt.libxmljs;
-
+var port = process.env.PREVIEW_PORT || 8888;
+var cert = process.env.PREVIEW_CERT;
 
 function returnFromCache( deckId ) {
 	var outputPath = 'output/' + deckId + '.html';
@@ -25,6 +21,9 @@ function returnFromCache( deckId ) {
 
 function transformAndCache( deckId ) {
 
+  var libxmljs = libxslt.libxmljs;
+
+	var stylesheetPath = 'preview-deck.xsl';
 	var documentPath = 'output/' + deckId + '.xml';
 	var outputPath = 'output/' + deckId + '.html';
  
@@ -45,18 +44,10 @@ function transformAndCache( deckId ) {
 
 }
 
-	
-
-var handler = function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-	var html = returnFromCache( deckId );
-	res.write(html);
-  res.end('');
-};
-
-const port = 8888;
-
 console.log('Listening on port ' + port);
+console.log('Using cert file: ' + cert);
+
+
 var app = express();
 app.listen(port)
 
@@ -82,9 +73,6 @@ function getFromServer( deckId ){
 	// save to here
 	var documentPath = 'output/' + deckId + '.xml';
 
-	var cert = '/Users/craiga01/workspace/dev.bbc.co.uk.pem';
-	var ca = 'ca-bundle.pem';
-	//var deckInIsite2Url = 'https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=' + deckId + '&project=education&allowNonLive=true&depth=2';
 
 var options = {
   hostname: 'api.live.bbc.co.uk',
