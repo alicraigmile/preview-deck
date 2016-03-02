@@ -1,6 +1,6 @@
 {
   "name": "preview-deck",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Preview a deck of cards from the Bitesie app in a web page.",
 	"repository": {
 		"type": "git",
