@@ -33,11 +33,9 @@ function transformAndCache( deckId ) {
  
 	var documentString = fs.readFileSync(documentPath, { encoding: 'utf8' });
 	var document = libxmljs.parseXml(documentString);
-	stylesheet.apply(document, function(err, result){
+	stylesheet.apply(document, function(err, result) {
 
 		// result is now a libxmljs document containing the result of the transformation 
-		//console.log(result.toString());
-		//console.log('---> ' + outputPath);
 		fs.writeFileSync(outputPath, result.toString(), { encoding: 'utf8' });
 
 	});
@@ -47,12 +45,21 @@ function transformAndCache( deckId ) {
 console.log('Listening on port ' + port);
 console.log('Using cert file: ' + cert);
 
-
 var app = express();
 app.listen(port)
 
 app.get('/', function(req, res) {
-  res.send('/decks/:deckId/preview');
+  res.send('<h1>Preview a deck</h1> <form method="get" action="/decks/preview"><input name="deckId" value="zxjmrdm"> <input type="submit" name="" value="Preview"></form> <a href="/version">Version info</a>');
+});
+
+app.get('/version', function(req, res) {
+	var version = getVersion();
+  res.send(version);
+});
+
+app.get('/decks/preview', function(req, res) {
+  var deckId = req.query.deckId;
+	res.redirect('/decks/' + deckId + '/preview');
 });
 
 app.get('/decks/:deckId/preview', function(req, res) {
@@ -104,13 +111,60 @@ req.end();
 
 }
 
+function getVersion() {
+	var content = fs.readFileSync('package.json');
+	var parsedJSON = JSON.parse(content);
+	return parsedJSON.name + '-' + parsedJSON.version;
+}
+app.get('/decks/:deckId/preview', function(req, res) {
+  var deckId = req.params.deckId;
+	if (!isCached( deckId)) {
+		getFromServer( deckId );
+		transformAndCache( deckId );
+	}
+	var html = returnFromCache( deckId );
+  res.send(html);
+});
 
-/*
-zid="$1"
-output="../output/"
+function isCached( deckId ) {
+	return false;
+}
 
-curl="/usr/local/Cellar/curl/7.46.0/bin/curl --cert /Users/craiga01/workspace/dev.bbc.co.uk.pem --cacert ../ca-bundle.pem"
-$curl -o $output/$zid.xml "https://api.live.bbc.co.uk/isite2-content-reader/content/file?id=$zid&project=education&allowNonLive=true&depth=2"
+function getFromServer( deckId ){
+	// save to here
+	var documentPath = 'output/' + deckId + '.xml';
 
-xsltproc ../preview-deck.xsl $output/$zid.xml > $output/$zid.html && open $output/$zid.html
-*/
+
+var options = {
+  hostname: 'api.live.bbc.co.uk',
+  port: 443,
+  path: '/isite2-content-reader/content/file?id=' + deckId + '&project=education&allowNonLive=true&depth=2',
+  method: 'GET',
+  key: fs.readFileSync(cert),
+  cert: fs.readFileSync(cert)
+};
+options.agent = new https.Agent(options);
+
+var req = https.request(options, (res) => {
+
+ var body = '';
+
+  res.on('data', (chunk) => {
+		body += chunk;
+	});
+
+  res.on('end', function () {
+		fs.writeFileSync(documentPath, body, { encoding: 'utf8' });
+  });
+});
+
+req.end();
+
+}
+
+function getVersion() {
+	var content = fs.readFileSync('package.json');
+	var parsedJSON = JSON.parse(content);
+	return parsedJSON.name + '-' + parsedJSON.version;
+}
+
