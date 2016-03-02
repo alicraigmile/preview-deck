@@ -49,7 +49,7 @@ var app = express();
 app.listen(port)
 
 app.get('/', function(req, res) {
-  res.send('<h1>Preview a deck</h1> <form method="get" action="/decks/preview"><input name="deckId" value="zxjmrdm"> <input type="submit" name="" value="Preview"></form> <a href="/version">Version info</a>');
+  res.send('<a href="/decks/">Get started</a> <a href="/version">Version info</a>');
 });
 
 app.get('/version', function(req, res) {
@@ -57,9 +57,14 @@ app.get('/version', function(req, res) {
   res.send(version);
 });
 
-app.get('/decks/preview', function(req, res) {
+app.get('/decks', function(req, res) {
   var deckId = req.query.deckId;
-	res.redirect('/decks/' + deckId + '/preview');
+	if (deckId) {
+		res.redirect('/decks/' + deckId + '/preview');
+	} else {
+		res.send('<h1>Preview a deck</h1> <form method="get" action="/decks"><input name="deckId" value="zxjmrdm"> <input type="submit" name="" value="Preview"></form> <a href="/version">Version info</a>');
+
+	}
 });
 
 app.get('/decks/:deckId/preview', function(req, res) {
