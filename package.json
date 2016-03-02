@@ -1,0 +1,28 @@
+{
+  "name": "preview-deck",
+  "version": "1.0.0",
+  "description": "Preview a deck of cards from the Bitesie app in a web page.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alicraigmile/preview-deck"
+	},
+  "main": "bin/preview-deck.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "libxmljs": "^0.17.1",
+    "libxslt": "^0.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+		"start": "node ./bin/preview-deck.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+		"bitesize",
+		"flashcards",
+		"deck",
+		"preview"
+	],
+  "author": "Ali Craigmile <ali@craigmile.com> (http://ali.craigmile.com)",
+  "license": "MIT"
+}

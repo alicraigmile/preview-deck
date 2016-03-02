@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var express = require('express');
 var libxslt = require('libxslt');
 var fs = require('fs');
@@ -35,8 +37,8 @@ function transformAndCache( deckId ) {
 	stylesheet.apply(document, function(err, result){
 
 		// result is now a libxmljs document containing the result of the transformation 
-		console.log(result.toString());
-		console.log('---> ' + outputPath);
+		//console.log(result.toString());
+		//console.log('---> ' + outputPath);
 		fs.writeFileSync(outputPath, result.toString(), { encoding: 'utf8' });
 
 	});
@@ -95,8 +97,8 @@ var options = {
 options.agent = new https.Agent(options);
 
 var req = https.request(options, (res) => {
-	console.log('statusCode: ', res.statusCode);
-	console.log('headers: ', res.headers);
+	//console.log('statusCode: ', res.statusCode);
+	//console.log('headers: ', res.headers);
 
  var body = '';
 
