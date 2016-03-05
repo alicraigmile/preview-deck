@@ -15,7 +15,7 @@
   "devDependencies": {},
   "scripts": {
 		"start": "node ./bin/preview-deck.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"0/0 tests pass => success! (p.s. write some tests!)\" && exit 0"
   },
   "keywords": [
 		"bitesize",
