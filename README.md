@@ -7,6 +7,11 @@ All you need is the deckId e.g. zgyng82
 npm install
 ```
 
+## Running tests ##
+```
+npm test
+```
+
 ## Starting the web service ##
 
 To access the raw decks in preview mode, you'll need a BBC developer certificate.
