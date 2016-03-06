@@ -42,3 +42,7 @@ http://localhost:8888/decks/zgyng82/preview
 
 ```
 http://localhost:8888/version
+
+## Notifications ##
+
+For updates on latest builds, join #ci on xgusties.slack.com
